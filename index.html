@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Terrel NUENTSA</title>
+  <meta name="description" content="Portfolio de Terrel NUENTSA — étudiant en L2 MIASHS et développeur web. Projets, compétences et contact." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">Terrel NUENTSA</a>
+      <button id="nav-toggle" aria-label="Ouvrir le menu">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
+        <a href="#about">À propos</a>
+        <a href="#projects">Projets</a>
+        <a href="#skills">Compétences</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Bonjour — je suis Terrel NUENTSA</h1>
+          <p>Étudiant en L3 MIASHS | Développeur web passionné par les interfaces modernes et interactives.</p>
+          <p class="hero-cta">
+            <a class="btn" href="#projects">Voir mes projets</a>
+            <a class="btn ghost" href="#contact">Me contacter</a>
+          </p>
+        </div>
+        <div class="hero-card" aria-hidden="true">
+          <img src="profile.jpg" alt="Photo de Terrel NUENTSA" />
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2>À propos</h2>
+        <p>Je suis étudiant en L3 MIASHS à l'Université Paris Nanterre et futur développeur web en devenir. J’aime concevoir des sites modernes, ergonomiques et performants. Mon objectif : allier technique et créativité pour proposer des expériences utilisateurs innovantes.</p>
+        <ul class="about-list">
+          <li><strong>Localisation :</strong> Paris</li>
+          <li><strong>Études :</strong> L2 MIASHS</li>
+          <li><strong>Disponibilité :</strong> Stage ou projet collaboratif</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="section projects">
+      <div class="container">
+        <h2>Projets</h2>
+        <p class="muted">Quelques projets personnels et universitaires.</p>
+
+        <div class="grid projects-grid">
+          <article class="card project-card" data-project='{"title":"BANDER-TRAVEL","desc":"Site de voyage moderne inspiré de KAYAK. Formulaire de recherche, réservation et base de données complexe.","link":"#","tech":"HTML • CSS • JS • PHP"}'>
+            <img src="project1.png" alt="Aperçu projet BANDER-TRAVEL" />
+            <div class="card-body">
+              <h3>BANDER-TRAVEL</h3>
+              <p class="card-meta">HTML • CSS • JS • PHP</p>
+            </div>
+          </article>
+
+          <article class="card project-card" data-project='{"title":"Fashi","desc":"Application web type réseau social où les utilisateurs publient des looks avec références de vêtements.","link":"#","tech":"React • Firebase"}'>
+            <img src="project2.png" alt="Aperçu projet Fashi" />
+            <div class="card-body">
+              <h3>Fashi</h3>
+              <p class="card-meta">React • Firebase</p>
+            </div>
+          </article>
+
+          <article class="card project-card" data-project='{"title":"Memory Game","desc":"Jeu de mémoire en JavaScript avec animations et scoring.","link":"#","tech":"Vanilla JS"}'>
+            <img src="project3.png" alt="Aperçu Memory Game" />
+            <div class="card-body">
+              <h3>Memory Game</h3>
+              <p class="card-meta">JavaScript • CSS</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <h2>Compétences</h2>
+        <div class="skills-grid">
+          <div class="skill">
+            <h4>Frontend</h4>
+            <p>HTML, CSS, JavaScript, React</p>
+          </div>
+          <div class="skill">
+            <h4>Backend</h4>
+            <p>PHP, Node.js, MySQL</p>
+          </div>
+          <div class="skill">
+            <h4>Outils</h4>
+            <p>Git, Figma, VSCode</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>Écris-moi à : <a href="mailto:nuentsa.terrel@gmail.com">nuentsa.terrel@gmail.com</a></p>
+
+        <form id="contact-form" class="contact-form" action="https://formspree.io/f/xxxxxxx" method="POST">
+          <div class="form-row">
+            <label for="name">Nom</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+          <div class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <div class="form-row">
+            <button type="submit" class="btn">Envoyer</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Terrel NUENTSA — Tous droits réservés</p>
+      <p class="socials">
+        <a href="#" aria-label="GitHub">GitHub</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+  <div id="project-modal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button id="modal-close" class="modal-close" aria-label="Fermer">×</button>
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
+      <p id="modal-tech" class="muted"></p>
+      <p><a id="modal-link" href="#" target="_blank" rel="noopener">Voir le projet</a></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
