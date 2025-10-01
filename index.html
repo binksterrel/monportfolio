@@ -1,154 +1,409 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portfolio — Terrel NUENTSA</title>
-  <meta name="description" content="Portfolio de Terrel NUENTSA — étudiant en L2 MIASHS et développeur web. Projets, compétences et contact." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terrel Nuentsa - Portfolio</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: #f8f9fa;
+      color: #222;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      z-index: 1000;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    header.scrolled {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff6600;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      background: #ff6600;
+      transition: width 0.3s;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    .theme-toggle {
+      margin-left: 20px;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    /* Menu mobile */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background: #fff;
+        width: 200px;
+        height: calc(100vh - 70px);
+        padding: 30px 20px;
+        gap: 20px;
+        transition: right 0.3s;
+      }
+      nav ul.active {
+        right: 0;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Sections */
+    .section {
+      padding: 100px 50px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #666;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to right, #ff6600, #ff9966);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+    }
+
+    .hero p {
+      margin: 15px 0 30px;
+      font-size: 1.2rem;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      background: #fff;
+      color: #ff6600;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .btn:hover {
+      background: #222;
+      color: #fff;
+    }
+
+    /* Projets */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-card img {
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .project-card h3 {
+      padding: 15px;
+      font-size: 1.3rem;
+      color: #333;
+    }
+
+    .project-card p {
+      padding: 0 15px 15px;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* Compétences */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .skill {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .skill:hover {
+      transform: scale(1.05);
+    }
+
+    .skill h4 {
+      margin-bottom: 10px;
+      color: #ff6600;
+    }
+
+    /* Contact */
+    .contact-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .contact-item h4 {
+      margin-bottom: 5px;
+      color: #ff6600;
+    }
+
+    .contact-item a {
+      color: #333;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+      color: #fff;
+      margin-top: 50px;
+    }
+
+    /* Dark mode */
+    body.dark-mode {
+      background: #121212;
+      color: #eee;
+    }
+
+    body.dark-mode header {
+      background: rgba(20,20,20,0.9);
+    }
+
+    body.dark-mode nav ul {
+      background: #222;
+    }
+
+    body.dark-mode .project-card,
+    body.dark-mode .skill {
+      background: #1e1e1e;
+      color: #eee;
+    }
+
+    body.dark-mode footer {
+      background: #000;
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#">Terrel NUENTSA</a>
-      <button id="nav-toggle" aria-label="Ouvrir le menu">Menu</button>
-      <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
-        <a href="#about">À propos</a>
-        <a href="#projects">Projets</a>
-        <a href="#skills">Compétences</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
+  <header id="navbar">
+    <div class="logo">Terrel</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav>
+      <ul id="nav-menu">
+        <li><a href="#home" onclick="closeMenu()">Accueil</a></li>
+        <li><a href="#projects" onclick="closeMenu()">Projets</a></li>
+        <li><a href="#skills" onclick="closeMenu()">Compétences</a></li>
+        <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
   </header>
 
-  <main>
-    <section id="hero" class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h1>Bonjour — je suis Terrel NUENTSA</h1>
-          <p>Étudiant en L3 MIASHS | Développeur web passionné par les interfaces modernes et interactives.</p>
-          <p class="hero-cta">
-            <a class="btn" href="#projects">Voir mes projets</a>
-            <a class="btn ghost" href="#contact">Me contacter</a>
-          </p>
-        </div>
-        <div class="hero-card" aria-hidden="true">
-          <img src="profile.jpg" alt="Photo de Terrel NUENTSA" />
-        </div>
+  <section id="home" class="hero">
+    <h1>Salut, je suis Terrel Nuentsa</h1>
+    <p>Étudiant en informatique passionné par le développement web et les nouvelles technologies.</p>
+    <a href="#projects" class="btn">Voir mes projets</a>
+  </section>
+
+  <section id="projects" class="section">
+    <h2 class="section-title">Mes Projets</h2>
+    <p class="section-subtitle">Quelques projets récents sur lesquels j’ai travaillé.</p>
+    <div class="projects-container">
+      <div class="project-card">
+        <img src="https://picsum.photos/400/200?random=1" alt="Projet 1">
+        <h3>Bandersnatch</h3>
+        <p>Application interactive qui génère des histoires où l’utilisateur fait ses choix.</p>
       </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="container">
-        <h2>À propos</h2>
-        <p>Je suis étudiant en L3 MIASHS à l'Université Paris Nanterre et futur développeur web en devenir. J’aime concevoir des sites modernes, ergonomiques et performants. Mon objectif : allier technique et créativité pour proposer des expériences utilisateurs innovantes.</p>
-        <ul class="about-list">
-          <li><strong>Localisation :</strong> Paris</li>
-          <li><strong>Études :</strong> L2 MIASHS</li>
-          <li><strong>Disponibilité :</strong> Stage ou projet collaboratif</li>
-        </ul>
+      <div class="project-card">
+        <img src="https://picsum.photos/400/200?random=2" alt="Projet 2">
+        <h3>Bander-Travel</h3>
+        <p>Plateforme de réservation de voyages moderne inspirée de KAYAK.</p>
       </div>
-    </section>
-
-    <section id="projects" class="section projects">
-      <div class="container">
-        <h2>Projets</h2>
-        <p class="muted">Quelques projets personnels et universitaires.</p>
-
-        <div class="grid projects-grid">
-          <article class="card project-card" data-project='{"title":"BANDER-TRAVEL","desc":"Site de voyage moderne inspiré de KAYAK. Formulaire de recherche, réservation et base de données complexe.","link":"#","tech":"HTML • CSS • JS • PHP"}'>
-            <img src="project1.png" alt="Aperçu projet BANDER-TRAVEL" />
-            <div class="card-body">
-              <h3>BANDER-TRAVEL</h3>
-              <p class="card-meta">HTML • CSS • JS • PHP</p>
-            </div>
-          </article>
-
-          <article class="card project-card" data-project='{"title":"Fashi","desc":"Application web type réseau social où les utilisateurs publient des looks avec références de vêtements.","link":"#","tech":"React • Firebase"}'>
-            <img src="project2.png" alt="Aperçu projet Fashi" />
-            <div class="card-body">
-              <h3>Fashi</h3>
-              <p class="card-meta">React • Firebase</p>
-            </div>
-          </article>
-
-          <article class="card project-card" data-project='{"title":"Memory Game","desc":"Jeu de mémoire en JavaScript avec animations et scoring.","link":"#","tech":"Vanilla JS"}'>
-            <img src="project3.png" alt="Aperçu Memory Game" />
-            <div class="card-body">
-              <h3>Memory Game</h3>
-              <p class="card-meta">JavaScript • CSS</p>
-            </div>
-          </article>
-        </div>
+      <div class="project-card">
+        <img src="https://picsum.photos/400/200?random=3" alt="Projet 3">
+        <h3>Fashi</h3>
+        <p>Application sociale pour partager et retrouver les références mode.</p>
       </div>
-    </section>
-
-    <section id="skills" class="section">
-      <div class="container">
-        <h2>Compétences</h2>
-        <div class="skills-grid">
-          <div class="skill">
-            <h4>Frontend</h4>
-            <p>HTML, CSS, JavaScript, React</p>
-          </div>
-          <div class="skill">
-            <h4>Backend</h4>
-            <p>PHP, Node.js, MySQL</p>
-          </div>
-          <div class="skill">
-            <h4>Outils</h4>
-            <p>Git, Figma, VSCode</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact">
-      <div class="container">
-        <h2>Contact</h2>
-        <p>Écris-moi à : <a href="mailto:nuentsa.terrel@gmail.com">nuentsa.terrel@gmail.com</a></p>
-
-        <form id="contact-form" class="contact-form" action="https://formspree.io/f/xxxxxxx" method="POST">
-          <div class="form-row">
-            <label for="name">Nom</label>
-            <input id="name" name="name" type="text" required />
-          </div>
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required />
-          </div>
-          <div class="form-row">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          <div class="form-row">
-            <button type="submit" class="btn">Envoyer</button>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> Terrel NUENTSA — Tous droits réservés</p>
-      <p class="socials">
-        <a href="#" aria-label="GitHub">GitHub</a>
-        <a href="#" aria-label="LinkedIn">LinkedIn</a>
-      </p>
     </div>
+  </section>
+
+  <section id="skills" class="section">
+    <h2 class="section-title">Compétences</h2>
+    <p class="section-subtitle">Langages, outils et frameworks que je maîtrise.</p>
+    <div class="skills-container">
+      <div class="skill">
+        <h4>HTML / CSS</h4>
+        <p>Création d’interfaces modernes et responsives.</p>
+      </div>
+      <div class="skill">
+        <h4>JavaScript</h4>
+        <p>Fonctionnalités dynamiques et interactives.</p>
+      </div>
+      <div class="skill">
+        <h4>PHP & MySQL</h4>
+        <p>Développement back-end et gestion de bases de données.</p>
+      </div>
+      <div class="skill">
+        <h4>React</h4>
+        <p>Applications web modernes et performantes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2 class="section-title">Contactez-moi</h2>
+    <p class="section-subtitle">Vous souhaitez collaborer, discuter d'un projet ou simplement échanger ? Voici comment me joindre.</p>
+
+    <div class="contact-container">
+      <div class="contact-item">
+        <h4>Email</h4>
+        <a href="mailto:nuentsa.terrel@gmail.com">nuentsa.terrel@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <h4>Téléphone</h4>
+        <a href="tel:+33612345678">+33 6 12 34 56 78</a>
+      </div>
+      <div class="contact-item">
+        <h4>Localisation</h4>
+        <p>Paris, France</p>
+      </div>
+      <div class="contact-item">
+        <h4>LinkedIn</h4>
+        <a href="https://www.linkedin.com/in/terrel-nuentsa" target="_blank">linkedin.com/in/terrel-nuentsa</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Terrel Nuentsa - Tous droits réservés.</p>
   </footer>
 
-  <div id="project-modal" class="modal" aria-hidden="true">
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button id="modal-close" class="modal-close" aria-label="Fermer">×</button>
-      <h3 id="modal-title"></h3>
-      <p id="modal-desc"></p>
-      <p id="modal-tech" class="muted"></p>
-      <p><a id="modal-link" href="#" target="_blank" rel="noopener">Voir le projet</a></p>
-    </div>
-  </div>
+  <script>
+    function toggleMenu() {
+      document.getElementById("nav-menu").classList.toggle("active");
+    }
 
-  <script src="script.js"></script>
+    function closeMenu() {
+      document.getElementById("nav-menu").classList.remove("active");
+    }
+
+    window.addEventListener("scroll", () => {
+      const navbar = document.getElementById("navbar");
+      if (window.scrollY > 60) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      const themeBtn = document.querySelector(".theme-toggle");
+      themeBtn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+    }
+  </script>
 </body>
 </html>
