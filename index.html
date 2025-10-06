@@ -14,26 +14,26 @@
     }
 
     :root {
-      --primary: #f97316; /* Orange vif */
-      --primary-light: #fb923c; /* Orange clair */
-      --secondary: #ea580c; /* Orange complémentaire */
-      --accent: #dc2626; /* Rouge-orangé */
-      --text-primary: #1e293b; /* Texte sombre pour contraste */
+      --primary: #f97316;
+      --primary-light: #fb923c;
+      --secondary: #ea580c;
+      --accent: #dc2626;
+      --text-primary: #1e293b;
       --text-secondary: #64748b;
-      --bg-light: #fef3c7; /* Fond clair légèrement orangé */
+      --bg-light: #fef3c7;
       --bg-white: #ffffff;
       --border: #e5e7eb;
       --glass: rgba(255, 255, 255, 0.7);
     }
 
     body.dark-mode {
-      --primary: #ea580c; /* Orange atténué pour mode sombre */
+      --primary: #ea580c;
       --primary-light: #f97316;
       --secondary: #fb923c;
       --accent: #f87171;
       --text-primary: #f1f5f9;
       --text-secondary: #d1d5db;
-      --bg-light: #1e293b; /* Fond sombre */
+      --bg-light: #1e293b;
       --bg-white: #334155;
       --border: #4b5563;
       --glass: rgba(51, 65, 85, 0.7);
@@ -49,7 +49,6 @@
       overflow-x: hidden;
     }
 
-    /* NAVBAR */
     nav {
       position: fixed;
       top: 0;
@@ -137,7 +136,6 @@
       width: 100%;
     }
 
-    /* HERO */
     .hero {
       padding: 12rem 2rem 8rem;
       text-align: center;
@@ -220,7 +218,6 @@
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
     }
 
-    /* SECTIONS */
     .section {
       max-width: 1280px;
       margin: 0 auto;
@@ -248,7 +245,25 @@
       margin-right: auto;
     }
 
-    /* ABOUT */
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .content-item {
+      background: var(--bg-white);
+      padding: 2rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .content-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -308,7 +323,6 @@
       font-size: 1.05rem;
     }
 
-    /* PROJECTS */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -405,7 +419,6 @@
       font-size: 1rem;
     }
 
-    /* SKILLS */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -474,7 +487,6 @@
       transform: translateY(-2px);
     }
 
-    /* CONTACT */
     .contact-container {
       background: var(--glass);
       backdrop-filter: blur(20px);
@@ -533,7 +545,6 @@
       color: var(--primary);
     }
 
-    /* FOOTER */
     footer {
       background: var(--text-primary);
       color: white;
@@ -563,7 +574,6 @@
       transform: scale(1.05);
     }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
       nav ul {
         display: none;
@@ -620,7 +630,6 @@
       }
     }
 
-    /* FALLBACKS */
     @supports not (backdrop-filter: blur(20px)) {
       nav, .about-grid, .contact-container {
         background: var(--bg-white);
@@ -636,8 +645,13 @@
       <ul id="nav-menu" role="navigation">
         <li><a href="#accueil" onclick="closeMenu()" class="nav-link">Accueil</a></li>
         <li><a href="#apropos" onclick="closeMenu()" class="nav-link">À Propos</a></li>
-        <li><a href="#projets" onclick="closeMenu()" class="nav-link">Projets</a></li>
-        <li><a href="#competences" onclick="closeMenu()" class="nav-link">Compétences</a></li>
+        <li><a href="#travaux" onclick="closeMenu()" class="nav-link">Travaux</a></li>
+        <li><a href="#notes" onclick="closeMenu()" class="nav-link">Notes</a></li>
+        <li><a href="#documents" onclick="closeMenu()" class="nav-link">Documents SI</a></li>
+        <li><a href="#certifications" onclick="closeMenu()" class="nav-link">Certifications</a></li>
+        <li><a href="#projet-final" onclick="closeMenu()" class="nav-link">Projet Final</a></li>
+        <li><a href="#diaporama" onclick="closeMenu()" class="nav-link">Diaporama</a></li>
+        <li><a href="#ressources" onclick="closeMenu()" class="nav-link">Ressources</a></li>
         <li><a href="#contact" onclick="closeMenu()" class="nav-link">Contact</a></li>
         <li>
           <button class="theme-toggle" aria-label="Changer de thème" onclick="toggleTheme()">
@@ -652,7 +666,7 @@
     <div class="hero-content">
       <h1 id="hero-title">Terrel Nuentsa</h1>
       <p>Étudiant en L3 MIASHS - Parcours MIAGE</p>
-      <a href="#projets" class="btn" role="button">Découvrir mes projets</a>
+      <a href="#travaux" class="btn" role="button">Découvrir mes travaux</a>
     </div>
   </section>
 
@@ -671,164 +685,103 @@
     </div>
   </section>
 
-  <section id="projets" class="section" aria-labelledby="projects-title">
-    <h2 class="section-title" id="projects-title">Mes Créations</h2>
-    <p class="section-subtitle">Découvrez une sélection de mes projets de développement web, mettant en valeur mes compétences techniques et ma créativité.</p>
-    <div class="projects-grid">
-      <article class="project-card">
-        <img src="https://via.placeholder.com/400x220/f97316/ffffff?text=Bander-Sneakers" alt="Bander-Sneakers site e-commerce" class="project-image" loading="lazy">
-        <div class="project-content">
-          <h3>Bander-Sneakers : Site e-commerce</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">PHP</span>
-          </div>
-          <div class="project-details">
-            <h4>Défis</h4>
-            <p>Développement d'un système de panier fonctionnel et intégration d'une passerelle de paiement sécurisée.</p>
-            <h4>Solutions</h4>
-            <p>Utilisation de sessions pour la gestion du panier et implémentation de mesures de sécurité pour les transactions.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <img src="https://via.placeholder.com/400x220/ea580c/ffffff?text=QuizMaster" alt="QuizMaster application de quiz" class="project-image" loading="lazy">
-        <div class="project-content">
-          <h3>QuizMaster - Application de quiz</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">MongoDB</span>
-            <span class="tech-tag">WebSocket</span>
-          </div>
-          <div class="project-details">
-            <h4>Défis</h4>
-            <p>Création d'un système de classement en temps réel et gestion des duels entre utilisateurs.</p>
-            <h4>Solutions</h4>
-            <p>Implémentation d'une base de données optimisée et utilisation de WebSockets pour les interactions en temps réel.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <img src="https://via.placeholder.com/400x220/fb923c/ffffff?text=Smart+Calendar" alt="Smart Calendar application de planification" class="project-image" loading="lazy">
-        <div class="project-content">
-          <h3>Smart Calendar - Application de planification</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">API</span>
-            <span class="tech-tag">PDF Export</span>
-          </div>
-          <div class="project-details">
-            <h4>Défis</h4>
-            <p>Intégration sécurisée des API de calendrier externes, gestion des fuseaux horaires, création d'une interface responsive pour différentes vues de calendrier, et exportation d'emplois du temps personnalisés.</p>
-            <h4>Solutions</h4>
-            <p>Utilisation d'API routes sécurisées pour protéger les clés API, implémentation de composants React modulaires pour les différentes vues de calendrier, et création d'un système d'exportation PDF/PNG flexible.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <img src="https://via.placeholder.com/400x220/dc2626/ffffff?text=Chat+Crypté" alt="Application de chat crypté" class="project-image" loading="lazy">
-        <div class="project-content">
-          <h3>Application de chat crypté</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">Cryptographie</span>
-            <span class="tech-tag">WebSocket</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">Security</span>
-          </div>
-          <div class="project-details">
-            <h4>Défis</h4>
-            <p>Implémentation d'algorithmes de chiffrement sécurisés et création d'une interface utilisateur intuitive.</p>
-            <h4>Solutions</h4>
-            <p>Utilisation de bibliothèques de cryptographie modernes et conception d'une UI/UX centrée sur l'utilisateur.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <img src="https://via.placeholder.com/400x220/f59e0b/ffffff?text=Bandersnach" alt="Bandersnach jeu de rôle interactif" class="project-image" loading="lazy">
-        <div class="project-content">
-          <h3>Bandersnach - Jeu de rôle interactif assisté par IA</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">IA</span>
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">NLP</span>
-            <span class="tech-tag">Gaming</span>
-          </div>
-          <div class="project-details">
-            <h4>Défis</h4>
-            <p>Intégration d'une IA capable de générer des histoires cohérentes et création d'une interface immersive.</p>
-            <h4>Solutions</h4>
-            <p>Utilisation d'algorithmes de traitement du langage naturel et conception d'une interface utilisateur engageante.</p>
-          </div>
-        </div>
-      </article>
+  <section id="travaux" class="section" aria-labelledby="travaux-title">
+    <h2 class="section-title" id="travaux-title">Travaux Demandés</h2>
+    <p class="section-subtitle">Liste des travaux demandés déposés dans ce portfolio.</p>
+    <div class="content-grid">
+      <div class="content-item">
+        <h3>Travail 1 : Projet Web</h3>
+        <p>Déposé le : 01/10/2025</p>
+      </div>
+      <div class="content-item">
+        <h3>Travail 2 : Analyse de Système</h3>
+        <p>Déposé le : 03/10/2025</p>
+      </div>
     </div>
   </section>
 
-  <section id="competences" class="section" aria-labelledby="skills-title">
-    <h2 class="section-title" id="skills-title">Mon Expertise</h2>
-    <p class="section-subtitle">Un aperçu des technologies et compétences que j'ai acquises au cours de ma formation et de mes projets.</p>
-    <div class="skills-grid">
-      <article class="skill-category">
-        <h3>Programmation</h3>
-        <div class="skill-list">
-          <span class="skill-item">Python</span>
-          <span class="skill-item">JavaScript</span>
-          <span class="skill-item">TypeScript</span>
-          <span class="skill-item">PHP</span>
-          <span class="skill-item">Java</span>
-          <span class="skill-item">C</span>
-        </div>
-      </article>
+  <section id="notes" class="section" aria-labelledby="notes-title">
+    <h2 class="section-title" id="notes-title">Notes de Cours</h2>
+    <p class="section-subtitle">Notes personnelles structurées et accessibles.</p>
+    <div class="content-grid">
+      <div class="content-item">
+        <h3>Introduction aux Systèmes d'Information</h3>
+        <p>Date : 02/10/2025</p>
+        <p><a href="notes_intro_si.pdf" target="_blank">Télécharger (PDF)</a></p>
+      </div>
+      <div class="content-item">
+        <h3>Gestion de Projets</h3>
+        <p>Date : 04/10/2025</p>
+        <p><a href="notes_gestion_projet.pdf" target="_blank">Télécharger (PDF)</a></p>
+      </div>
+    </div>
+  </section>
 
-      <article class="skill-category">
-        <h3>Développement Web</h3>
-        <div class="skill-list">
-          <span class="skill-item">HTML5</span>
-          <span class="skill-item">CSS3</span>
-          <span class="skill-item">React</span>
-          <span class="skill-item">Node.js</span>
-          <span class="skill-item">Next.js</span>
-          <span class="skill-item">Tailwind CSS</span>
-        </div>
-      </article>
+  <section id="documents" class="section" aria-labelledby="documents-title">
+    <h2 class="section-title" id="documents-title">Documents Système d'Information</h2>
+    <p class="section-subtitle">Documents rédigés et organisés relatifs aux systèmes d'information.</p>
+    <div class="content-grid">
+      <div class="content-item">
+        <h3>Analyse des Besoins</h3>
+        <p><a href="analyse_besoins.pdf" target="_blank">Télécharger (PDF)</a></p>
+      </div>
+      <div class="content-item">
+        <h3>Modèle Conceptuel</h3>
+        <p><a href="modele_conceptuel.pdf" target="_blank">Télécharger (PDF)</a></p>
+      </div>
+    </div>
+  </section>
 
-      <article class="skill-category">
-        <h3>Base de données</h3>
-        <div class="skill-list">
-          <span class="skill-item">MySQL</span>
-          <span class="skill-item">PostgreSQL</span>
-          <span class="skill-item">MongoDB</span>
-          <span class="skill-item">Supabase</span>
-        </div>
-      </article>
+  <section id="certifications" class="section" aria-labelledby="certifications-title">
+    <h2 class="section-title" id="certifications-title">Certifications</h2>
+    <p class="section-subtitle">Certifications obtenues et déposées.</p>
+    <div class="content-grid">
+      <div class="content-item">
+        <h3>Certification HTML5</h3>
+        <p><a href="cert_html5.pdf" target="_blank">Télécharger (PDF)</a></p>
+      </div>
+      <div class="content-item">
+        <h3>Certification CSS3</h3>
+        <p><a href="cert_css3.pdf" target="_blank">Télécharger (PDF)</a></p>
+      </div>
+    </div>
+  </section>
 
-      <article class="skill-category">
-        <h3>Outils de Productivité Technique</h3>
-        <div class="skill-list">
-          <span class="skill-item">Git</span>
-          <span class="skill-item">GitHub</span>
-          <span class="skill-item">VS Code</span>
-          <span class="skill-item">Docker</span>
-          <span class="skill-item">Postman</span>
-        </div>
-      </article>
+  <section id="projet-final" class="section" aria-labelledby="projet-final-title">
+    <h2 class="section-title" id="projet-final-title">Projet Final</h2>
+    <p class="section-subtitle">Projet final intégrant mes compétences acquises.</p>
+    <div class="content-grid">
+      <div class="content-item">
+        <h3>Portfolio Interactif</h3>
+        <p>Description : Ce portfolio est un projet final démontrant mes compétences en développement web.</p>
+        <p><a href="projet_final.pdf" target="_blank">Détails (PDF)</a></p>
+      </div>
+    </div>
+  </section>
 
-      <article class="skill-category">
-        <h3>Outils Bureautiques</h3>
-        <div class="skill-list">
-          <span class="skill-item">Microsoft Office</span>
-          <span class="skill-item">Google Workspace</span>
-          <span class="skill-item">Notion</span>
-        </div>
-      </article>
+  <section id="diaporama" class="section" aria-labelledby="diaporama-title">
+    <h2 class="section-title" id="diaporama-title">Diaporama</h2>
+    <p class="section-subtitle">Diaporama structuré pour la soutenance.</p>
+    <div class="content-grid">
+      <div class="content-item">
+        <h3>Présentation Portfolio</h3>
+        <p><a href="diaporama_portfolio.pdf" target="_blank">Télécharger (PDF)</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ressources" class="section" aria-labelledby="ressources-title">
+    <h2 class="section-title" id="ressources-title">Autres Ressources</h2>
+    <p class="section-subtitle">Ressources complémentaires pertinentes.</p>
+    <div class="content-grid">
+      <div class="content-item">
+        <h3>Tutoriel Git</h3>
+        <p><a href="tutoriel_git.pdf" target="_blank">Télécharger (PDF)</a></p>
+      </div>
+      <div class="content-item">
+        <h3>Article sur les SI</h3>
+        <p><a href="article_si.pdf" target="_blank">Télécharger (PDF)</a></p>
+      </div>
     </div>
   </section>
 
@@ -858,7 +811,6 @@
   </footer>
 
   <script>
-    // Toggle mobile menu
     function toggleMenu() {
       const menu = document.getElementById('nav-menu');
       const toggleButton = document.querySelector('.menu-toggle');
@@ -867,7 +819,6 @@
       toggleButton.innerHTML = isExpanded ? '✕' : '☰';
     }
 
-    // Close mobile menu
     function closeMenu() {
       const menu = document.getElementById('nav-menu');
       const toggleButton = document.querySelector('.menu-toggle');
@@ -876,7 +827,6 @@
       toggleButton.innerHTML = '☰';
     }
 
-    // Toggle theme
     function toggleTheme() {
       document.body.classList.toggle('dark-mode');
       const themeIcon = document.querySelector('.theme-icon');
@@ -884,7 +834,6 @@
       localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     }
 
-    // Load saved theme
     document.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark') {
@@ -892,13 +841,11 @@
         document.querySelector('.theme-icon').textContent = '☀️';
       }
 
-      // Add scroll effect to navbar
       window.addEventListener('scroll', () => {
         const navbar = document.getElementById('navbar');
         navbar.classList.toggle('scrolled', window.scrollY > 50);
       });
 
-      // Add active class to current section link
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
 
