@@ -1,3 +1,6 @@
+Voici le code HTML complet avec toutes les modifications intégrées :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -49,6 +52,7 @@
       overflow-x: hidden;
     }
 
+    /* NAVBAR */
     nav {
       position: fixed;
       top: 0;
@@ -136,6 +140,7 @@
       width: 100%;
     }
 
+    /* HERO */
     .hero {
       padding: 12rem 2rem 8rem;
       text-align: center;
@@ -218,6 +223,7 @@
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
     }
 
+    /* SECTIONS */
     .section {
       max-width: 1280px;
       margin: 0 auto;
@@ -245,25 +251,7 @@
       margin-right: auto;
     }
 
-    .content-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .content-item {
-      background: var(--bg-white);
-      padding: 2rem;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      transition: all 0.3s;
-    }
-
-    .content-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-    }
-
+    /* ABOUT */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -323,6 +311,118 @@
       font-size: 1.05rem;
     }
 
+    /* PORTFOLIO RUBRICS */
+    .portfolio-rubrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .rubric-card {
+      background: var(--bg-white);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .rubric-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease-out;
+    }
+
+    .rubric-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .rubric-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 24px 64px rgba(249, 115, 22, 0.15);
+    }
+
+    .rubric-header {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(234, 88, 12, 0.08));
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rubric-header::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
+      50% { transform: scale(1.1) rotate(90deg); opacity: 1; }
+    }
+
+    .rubric-number {
+      display: inline-block;
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+
+    .rubric-header h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .rubric-content {
+      padding: 2rem;
+    }
+
+    .rubric-content .competence {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .criteria {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.05), rgba(234, 88, 12, 0.05));
+      padding: 1.25rem;
+      border-radius: 12px;
+      border-left: 3px solid var(--primary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    .criteria strong {
+      color: var(--primary);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* PROJECTS */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -419,6 +519,7 @@
       font-size: 1rem;
     }
 
+    /* SKILLS */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -487,6 +588,7 @@
       transform: translateY(-2px);
     }
 
+    /* CONTACT */
     .contact-container {
       background: var(--glass);
       backdrop-filter: blur(20px);
@@ -545,6 +647,7 @@
       color: var(--primary);
     }
 
+    /* FOOTER */
     footer {
       background: var(--text-primary);
       color: white;
@@ -574,6 +677,7 @@
       transform: scale(1.05);
     }
 
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       nav ul {
         display: none;
@@ -630,6 +734,7 @@
       }
     }
 
+    /* FALLBACKS */
     @supports not (backdrop-filter: blur(20px)) {
       nav, .about-grid, .contact-container {
         background: var(--bg-white);
@@ -645,13 +750,9 @@
       <ul id="nav-menu" role="navigation">
         <li><a href="#accueil" onclick="closeMenu()" class="nav-link">Accueil</a></li>
         <li><a href="#apropos" onclick="closeMenu()" class="nav-link">À Propos</a></li>
-        <li><a href="#travaux" onclick="closeMenu()" class="nav-link">Travaux</a></li>
-        <li><a href="#notes" onclick="closeMenu()" class="nav-link">Notes</a></li>
-        <li><a href="#documents" onclick="closeMenu()" class="nav-link">Documents SI</a></li>
-        <li><a href="#certifications" onclick="closeMenu()" class="nav-link">Certifications</a></li>
-        <li><a href="#projet-final" onclick="closeMenu()" class="nav-link">Projet Final</a></li>
-        <li><a href="#diaporama" onclick="closeMenu()" class="nav-link">Diaporama</a></li>
-        <li><a href="#ressources" onclick="closeMenu()" class="nav-link">Ressources</a></li>
+        <li><a href="#portfolio" onclick="closeMenu()" class="nav-link">Portfolio</a></li>
+        <li><a href="#projets" onclick="closeMenu()" class="nav-link">Projets</a></li>
+        <li><a href="#competences" onclick="closeMenu()" class="nav-link">Compétences</a></li>
         <li><a href="#contact" onclick="closeMenu()" class="nav-link">Contact</a></li>
         <li>
           <button class="theme-toggle" aria-label="Changer de thème" onclick="toggleTheme()">
@@ -666,7 +767,7 @@
     <div class="hero-content">
       <h1 id="hero-title">Terrel Nuentsa</h1>
       <p>Étudiant en L3 MIASHS - Parcours MIAGE</p>
-      <a href="#travaux" class="btn" role="button">Découvrir mes travaux</a>
+      <a href="#projets" class="btn" role="button">Découvrir mes projets</a>
     </div>
   </section>
 
@@ -685,103 +786,263 @@
     </div>
   </section>
 
-  <section id="travaux" class="section" aria-labelledby="travaux-title">
-    <h2 class="section-title" id="travaux-title">Travaux Demandés</h2>
-    <p class="section-subtitle">Liste des travaux demandés déposés dans ce portfolio.</p>
-    <div class="content-grid">
-      <div class="content-item">
-        <h3>Travail 1 : Projet Web</h3>
-        <p>Déposé le : 01/10/2025</p>
-      </div>
-      <div class="content-item">
-        <h3>Travail 2 : Analyse de Système</h3>
-        <p>Déposé le : 03/10/2025</p>
-      </div>
+  <section id="portfolio" class="section" aria-labelledby="portfolio-title">
+    <h2 class="section-title" id="portfolio-title">Portfolio Académique</h2>
+    <p class="section-subtitle">Module: Introduction aux systèmes d'information - Semestre 5 Parcours MIAGE</p>
+    
+    <div class="portfolio-rubrics">
+      <article class="rubric-card">
+        <div class="rubric-header">
+          <span class="rubric-number">01</span>
+          <h3>Travaux Demandés</h3>
+        </div>
+        <div class="rubric-content">
+          <p class="competence">Gérer et organiser ses productions académiques</p>
+          <div class="criteria">
+            <strong>Critères:</strong> Tous les travaux demandés sont déposés, complets et correctement nommés
+          </div>
+        </div>
+      </article>
+
+      <article class="rubric-card">
+        <div class="rubric-header">
+          <span class="rubric-number">02</span>
+          <h3>Notes de Cours</h3>
+        </div>
+        <div class="rubric-content">
+          <p class="competence">Développer une autonomie dans la prise de notes et la gestion des ressources personnelles</p>
+          <div class="criteria">
+            <strong>Critères:</strong> Les notes de cours sont claires, structurées et accessibles
+          </div>
+        </div>
+      </article>
+
+      <article class="rubric-card">
+        <div class="rubric-header">
+          <span class="rubric-number">03</span>
+          <h3>Documents Système</h3>
+        </div>
+        <div class="rubric-content">
+          <p class="competence">Identifier, rédiger et organiser des documents liés à un système d'information</p>
+          <div class="criteria">
+            <strong>Critères:</strong> Les documents sont rédigés, classés et bien présentés
+          </div>
+        </div>
+      </article>
+
+      <article class="rubric-card">
+        <div class="rubric-header">
+          <span class="rubric-number">04</span>
+          <h3>Certifications</h3>
+        </div>
+        <div class="rubric-content">
+          <p class="competence">Valoriser quelques compétences par des attestations ou certifications obtenues</p>
+          <div class="criteria">
+            <strong>Critères:</strong> Les certificats sont déposés en format lisible (PDF ou image) et correctement identifiés
+          </div>
+        </div>
+      </article>
+
+      <article class="rubric-card">
+        <div class="rubric-header">
+          <span class="rubric-number">05</span>
+          <h3>Projet Final</h3>
+        </div>
+        <div class="rubric-content">
+          <p class="competence">Concevoir et réaliser un projet numérique intégrant les compétences acquises</p>
+          <div class="criteria">
+            <strong>Critères:</strong> Le projet est réalisé, documenté et présenté de manière professionnelle
+          </div>
+        </div>
+      </article>
+
+      <article class="rubric-card">
+        <div class="rubric-header">
+          <span class="rubric-number">06</span>
+          <h3>Diaporama Soutenance</h3>
+        </div>
+        <div class="rubric-content">
+          <p class="competence">Synthétiser et présenter un projet de manière claire et professionnelle</p>
+          <div class="criteria">
+            <strong>Critères:</strong> Le diaporama est structuré, visuellement lisible et adapté à une présentation orale
+          </div>
+        </div>
+      </article>
+
+      <article class="rubric-card">
+        <div class="rubric-header">
+          <span class="rubric-number">07</span>
+          ```html
+          <h3>Autres Ressources</h3>
+        </div>
+        <div class="rubric-content">
+          <p class="competence">Développer une capacité de veille et d'enrichissement personnel par des ressources complémentaires</p>
+          <div class="criteria">
+            <strong>Critères:</strong> Les ressources ajoutées sont pertinentes, variées et correctement référencées
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
-  <section id="notes" class="section" aria-labelledby="notes-title">
-    <h2 class="section-title" id="notes-title">Notes de Cours</h2>
-    <p class="section-subtitle">Notes personnelles structurées et accessibles.</p>
-    <div class="content-grid">
-      <div class="content-item">
-        <h3>Introduction aux Systèmes d'Information</h3>
-        <p>Date : 02/10/2025</p>
-        <p><a href="notes_intro_si.pdf" target="_blank">Télécharger (PDF)</a></p>
-      </div>
-      <div class="content-item">
-        <h3>Gestion de Projets</h3>
-        <p>Date : 04/10/2025</p>
-        <p><a href="notes_gestion_projet.pdf" target="_blank">Télécharger (PDF)</a></p>
-      </div>
+  <section id="projets" class="section" aria-labelledby="projects-title">
+    <h2 class="section-title" id="projects-title">Mes Créations</h2>
+    <p class="section-subtitle">Découvrez une sélection de mes projets de développement web, mettant en valeur mes compétences techniques et ma créativité.</p>
+    <div class="projects-grid">
+      <article class="project-card">
+        <img src="https://via.placeholder.com/400x220/f97316/ffffff?text=Bander-Sneakers" alt="Bander-Sneakers site e-commerce" class="project-image" loading="lazy">
+        <div class="project-content">
+          <h3>Bander-Sneakers : Site e-commerce</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">PHP</span>
+          </div>
+          <div class="project-details">
+            <h4>Défis</h4>
+            <p>Développement d'un système de panier fonctionnel et intégration d'une passerelle de paiement sécurisée.</p>
+            <h4>Solutions</h4>
+            <p>Utilisation de sessions pour la gestion du panier et implémentation de mesures de sécurité pour les transactions.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img src="https://via.placeholder.com/400x220/ea580c/ffffff?text=QuizMaster" alt="QuizMaster application de quiz" class="project-image" loading="lazy">
+        <div class="project-content">
+          <h3>QuizMaster - Application de quiz</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">WebSocket</span>
+          </div>
+          <div class="project-details">
+            <h4>Défis</h4>
+            <p>Création d'un système de classement en temps réel et gestion des duels entre utilisateurs.</p>
+            <h4>Solutions</h4>
+            <p>Implémentation d'une base de données optimisée et utilisation de WebSockets pour les interactions en temps réel.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img src="https://via.placeholder.com/400x220/fb923c/ffffff?text=Smart+Calendar" alt="Smart Calendar application de planification" class="project-image" loading="lazy">
+        <div class="project-content">
+          <h3>Smart Calendar - Application de planification</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">API</span>
+            <span class="tech-tag">PDF Export</span>
+          </div>
+          <div class="project-details">
+            <h4>Défis</h4>
+            <p>Intégration sécurisée des API de calendrier externes, gestion des fuseaux horaires, création d'une interface responsive pour différentes vues de calendrier, et exportation d'emplois du temps personnalisés.</p>
+            <h4>Solutions</h4>
+            <p>Utilisation d'API routes sécurisées pour protéger les clés API, implémentation de composants React modulaires pour les différentes vues de calendrier, et création d'un système d'exportation PDF/PNG flexible.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img src="https://via.placeholder.com/400x220/dc2626/ffffff?text=Chat+Crypté" alt="Application de chat crypté" class="project-image" loading="lazy">
+        <div class="project-content">
+          <h3>Application de chat crypté</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">Cryptographie</span>
+            <span class="tech-tag">WebSocket</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Security</span>
+          </div>
+          <div class="project-details">
+            <h4>Défis</h4>
+            <p>Implémentation d'algorithmes de chiffrement sécurisés et création d'une interface utilisateur intuitive.</p>
+            <h4>Solutions</h4>
+            <p>Utilisation de bibliothèques de cryptographie modernes et conception d'une UI/UX centrée sur l'utilisateur.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img src="https://via.placeholder.com/400x220/f59e0b/ffffff?text=Bandersnach" alt="Bandersnach jeu de rôle interactif" class="project-image" loading="lazy">
+        <div class="project-content">
+          <h3>Bandersnach - Jeu de rôle interactif assisté par IA</h3>
+          <div class="tech-tags">
+            <span class="tech-tag">IA</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">Gaming</span>
+          </div>
+          <div class="project-details">
+            <h4>Défis</h4>
+            <p>Intégration d'une IA capable de générer des histoires cohérentes et création d'une interface immersive.</p>
+            <h4>Solutions</h4>
+            <p>Utilisation d'algorithmes de traitement du langage naturel et conception d'une interface utilisateur engageante.</p>
+          </div>
+        </div>
+      </article>
     </div>
   </section>
 
-  <section id="documents" class="section" aria-labelledby="documents-title">
-    <h2 class="section-title" id="documents-title">Documents Système d'Information</h2>
-    <p class="section-subtitle">Documents rédigés et organisés relatifs aux systèmes d'information.</p>
-    <div class="content-grid">
-      <div class="content-item">
-        <h3>Analyse des Besoins</h3>
-        <p><a href="analyse_besoins.pdf" target="_blank">Télécharger (PDF)</a></p>
-      </div>
-      <div class="content-item">
-        <h3>Modèle Conceptuel</h3>
-        <p><a href="modele_conceptuel.pdf" target="_blank">Télécharger (PDF)</a></p>
-      </div>
-    </div>
-  </section>
+  <section id="competences" class="section" aria-labelledby="skills-title">
+    <h2 class="section-title" id="skills-title">Mon Expertise</h2>
+    <p class="section-subtitle">Un aperçu des technologies et compétences que j'ai acquises au cours de ma formation et de mes projets.</p>
+    <div class="skills-grid">
+      <article class="skill-category">
+        <h3>Programmation</h3>
+        <div class="skill-list">
+          <span class="skill-item">Python</span>
+          <span class="skill-item">JavaScript</span>
+          <span class="skill-item">TypeScript</span>
+          <span class="skill-item">PHP</span>
+          <span class="skill-item">Java</span>
+          <span class="skill-item">C</span>
+        </div>
+      </article>
 
-  <section id="certifications" class="section" aria-labelledby="certifications-title">
-    <h2 class="section-title" id="certifications-title">Certifications</h2>
-    <p class="section-subtitle">Certifications obtenues et déposées.</p>
-    <div class="content-grid">
-      <div class="content-item">
-        <h3>Certification HTML5</h3>
-        <p><a href="cert_html5.pdf" target="_blank">Télécharger (PDF)</a></p>
-      </div>
-      <div class="content-item">
-        <h3>Certification CSS3</h3>
-        <p><a href="cert_css3.pdf" target="_blank">Télécharger (PDF)</a></p>
-      </div>
-    </div>
-  </section>
+      <article class="skill-category">
+        <h3>Développement Web</h3>
+        <div class="skill-list">
+          <span class="skill-item">HTML5</span>
+          <span class="skill-item">CSS3</span>
+          <span class="skill-item">React</span>
+          <span class="skill-item">Node.js</span>
+          <span class="skill-item">Next.js</span>
+          <span class="skill-item">Tailwind CSS</span>
+        </div>
+      </article>
 
-  <section id="projet-final" class="section" aria-labelledby="projet-final-title">
-    <h2 class="section-title" id="projet-final-title">Projet Final</h2>
-    <p class="section-subtitle">Projet final intégrant mes compétences acquises.</p>
-    <div class="content-grid">
-      <div class="content-item">
-        <h3>Portfolio Interactif</h3>
-        <p>Description : Ce portfolio est un projet final démontrant mes compétences en développement web.</p>
-        <p><a href="projet_final.pdf" target="_blank">Détails (PDF)</a></p>
-      </div>
-    </div>
-  </section>
+      <article class="skill-category">
+        <h3>Base de données</h3>
+        <div class="skill-list">
+          <span class="skill-item">MySQL</span>
+          <span class="skill-item">PostgreSQL</span>
+          <span class="skill-item">MongoDB</span>
+          <span class="skill-item">Supabase</span>
+        </div>
+      </article>
 
-  <section id="diaporama" class="section" aria-labelledby="diaporama-title">
-    <h2 class="section-title" id="diaporama-title">Diaporama</h2>
-    <p class="section-subtitle">Diaporama structuré pour la soutenance.</p>
-    <div class="content-grid">
-      <div class="content-item">
-        <h3>Présentation Portfolio</h3>
-        <p><a href="diaporama_portfolio.pdf" target="_blank">Télécharger (PDF)</a></p>
-      </div>
-    </div>
-  </section>
+      <article class="skill-category">
+        <h3>Outils de Productivité Technique</h3>
+        <div class="skill-list">
+          <span class="skill-item">Git</span>
+          <span class="skill-item">GitHub</span>
+          <span class="skill-item">VS Code</span>
+          <span class="skill-item">Docker</span>
+          <span class="skill-item">Postman</span>
+        </div>
+      </article>
 
-  <section id="ressources" class="section" aria-labelledby="ressources-title">
-    <h2 class="section-title" id="ressources-title">Autres Ressources</h2>
-    <p class="section-subtitle">Ressources complémentaires pertinentes.</p>
-    <div class="content-grid">
-      <div class="content-item">
-        <h3>Tutoriel Git</h3>
-        <p><a href="tutoriel_git.pdf" target="_blank">Télécharger (PDF)</a></p>
-      </div>
-      <div class="content-item">
-        <h3>Article sur les SI</h3>
-        <p><a href="article_si.pdf" target="_blank">Télécharger (PDF)</a></p>
-      </div>
+      <article class="skill-category">
+        <h3>Outils Bureautiques</h3>
+        <div class="skill-list">
+          <span class="skill-item">Microsoft Office</span>
+          <span class="skill-item">Google Workspace</span>
+          <span class="skill-item">Notion</span>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -811,6 +1072,7 @@
   </footer>
 
   <script>
+    // Toggle mobile menu
     function toggleMenu() {
       const menu = document.getElementById('nav-menu');
       const toggleButton = document.querySelector('.menu-toggle');
@@ -819,6 +1081,7 @@
       toggleButton.innerHTML = isExpanded ? '✕' : '☰';
     }
 
+    // Close mobile menu
     function closeMenu() {
       const menu = document.getElementById('nav-menu');
       const toggleButton = document.querySelector('.menu-toggle');
@@ -827,6 +1090,7 @@
       toggleButton.innerHTML = '☰';
     }
 
+    // Toggle theme
     function toggleTheme() {
       document.body.classList.toggle('dark-mode');
       const themeIcon = document.querySelector('.theme-icon');
@@ -834,6 +1098,7 @@
       localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     }
 
+    // Load saved theme
     document.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark') {
@@ -841,11 +1106,13 @@
         document.querySelector('.theme-icon').textContent = '☀️';
       }
 
+      // Add scroll effect to navbar
       window.addEventListener('scroll', () => {
         const navbar = document.getElementById('navbar');
         navbar.classList.toggle('scrolled', window.scrollY > 50);
       });
 
+      // Add active class to current section link
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
 
