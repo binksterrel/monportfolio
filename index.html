@@ -1,1134 +1,424 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio de Terrel Nuentsa, étudiant en L3 MIASHS - Parcours MIAGE">
-  <title>Terrel Nuentsa - Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --primary: #f97316;
-      --primary-light: #fb923c;
-      --secondary: #ea580c;
-      --accent: #dc2626;
-      --text-primary: #1e293b;
-      --text-secondary: #64748b;
-      --bg-light: #fef3c7;
-      --bg-white: #ffffff;
-      --border: #e5e7eb;
-      --glass: rgba(255, 255, 255, 0.7);
-    }
-
-    body.dark-mode {
-      --primary: #ea580c;
-      --primary-light: #f97316;
-      --secondary: #fb923c;
-      --accent: #f87171;
-      --text-primary: #f1f5f9;
-      --text-secondary: #d1d5db;
-      --bg-light: #1e293b;
-      --bg-white: #334155;
-      --border: #4b5563;
-      --glass: rgba(51, 65, 85, 0.7);
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: var(--text-primary);
-      background: var(--bg-light);
-      scroll-behavior: smooth;
-      transition: background 0.3s, color 0.3s;
-      overflow-x: hidden;
-    }
-
-    /* NAVBAR */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: var(--glass);
-      backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
-      padding: 1rem 0;
-      transition: all 0.3s;
-    }
-
-    nav.scrolled {
-      padding: 0.5rem 0;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-    }
-
-    nav .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav .logo {
-      font-size: 1.75rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -2px;
-    }
-
-    .theme-toggle {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      font-size: 1.3rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      padding: 0.5rem;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
-
-    .theme-toggle:hover {
-      transform: scale(1.1) rotate(15deg);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    nav a {
-      color: var(--text-primary);
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-      transition: color 0.3s;
-      font-size: 0.95rem;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -5px;
-      width: 0%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transition: all 0.3s;
-      transform: translateX(-50%);
-    }
-
-    nav a:hover::after,
-    nav a.active::after {
-      width: 100%;
-    }
-
-    /* HERO */
-    .hero {
-      padding: 12rem 2rem 8rem;
-      text-align: center;
-      background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #fb923c 100%);
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-      animation: pulse 8s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-    }
-
-    .hero-content h1 {
-      font-size: 4.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      letter-spacing: -3px;
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    .hero-content p {
-      font-size: 1.5rem;
-      opacity: 0.95;
-      margin-bottom: 2.5rem;
-      font-weight: 300;
-      animation: fadeInUp 0.8s ease-out 0.2s backwards;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      background: white;
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      animation: fadeInUp 0.8s ease-out 0.4s backwards;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    /* SECTIONS */
-    .section {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 6rem 2rem;
-    }
-
-    .section-title {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      font-weight: 800;
-      letter-spacing: -2px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      background-clip: text;
-      color: transparent;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      color: var(--text-secondary);
-      margin-bottom: 4rem;
-      font-size: 1.15rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 4rem;
-      align-items: center;
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      padding: 3.5rem;
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-      transition: all 0.3s;
-    }
-
-    .about-grid:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
-    }
-
-    .about-image {
-      text-align: center;
-    }
-
-    .profile-img {
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
-      box-shadow: 0 12px 40px rgba(249, 115, 22, 0.3);
-      transition: all 0.4s;
-    }
-
-    .profile-img:hover {
-      transform: scale(1.05) rotate(5deg);
-      box-shadow: 0 20px 60px rgba(249, 115, 22, 0.4);
-    }
-
-    .about-content h3 {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 0.5rem;
-      font-size: 1.75rem;
-      font-weight: 700;
-    }
-
-    .about-content h4 {
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-    }
-
-    .about-content p {
-      color: var(--text-secondary);
-      line-height: 1.8;
-      font-size: 1.05rem;
-    }
-
-    /* PORTFOLIO RUBRICS */
-    .portfolio-rubrics {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .rubric-card {
-      background: var(--bg-white);
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-
-    .rubric-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.5s ease-out;
-    }
-
-    .rubric-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .rubric-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 24px 64px rgba(249, 115, 22, 0.15);
-    }
-
-    .rubric-header {
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.08), rgba(234, 88, 12, 0.08));
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .rubric-header::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
-      animation: pulse-glow 4s ease-in-out infinite;
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.5; }
-      50% { transform: scale(1.1) rotate(90deg); opacity: 1; }
-    }
-
-    .rubric-number {
-      display: inline-block;
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 0.5rem;
-      line-height: 1;
-    }
-
-    .rubric-header h3 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin: 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .rubric-content {
-      padding: 2rem;
-    }
-
-    .rubric-content .competence {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-
-    .criteria {
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.05), rgba(234, 88, 12, 0.05));
-      padding: 1.25rem;
-      border-radius: 12px;
-      border-left: 3px solid var(--primary);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--text-primary);
-    }
-
-    .criteria strong {
-      color: var(--primary);
-      font-weight: 600;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    /* PROJECTS */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2.5rem;
-    }
-
-    .project-card {
-      background: var(--bg-white);
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-
-    .project-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transform: scaleX(0);
-      transition: transform 0.4s;
-    }
-
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-    }
-
-    .project-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .project-image {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-
-    .project-card:hover .project-image {
-      transform: scale(1.05);
-    }
-
-    .project-content {
-      padding: 2rem;
-    }
-
-    .project-content h3 {
-      margin-bottom: 1rem;
-      color: var(--text-primary);
-      font-size: 1.35rem;
-      font-weight: 700;
-    }
-
-    .tech-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .tech-tag {
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(234, 88, 12, 0.1));
-      color: var(--primary);
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      border: 1px solid rgba(249, 115, 22, 0.2);
-      transition: all 0.3s;
-    }
-
-    .tech-tag:hover {
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.2));
-      transform: translateY(-2px);
-    }
-
-    .project-details {
-      margin-top: 1.25rem;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .project-details h4 {
-      color: var(--text-primary);
-      margin-top: 1rem;
-      margin-bottom: 0.4rem;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    /* SKILLS */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .skill-category {
-      background: var(--bg-white);
-      padding: 2.5rem;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .skill-category::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-
-    .skill-category:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-    }
-
-    .skill-category:hover::before {
-      transform: scaleX(1);
-    }
-
-    .skill-category h3 {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1.5rem;
-      font-size: 1.35rem;
-      font-weight: 700;
-    }
-
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-
-    .skill-item {
-      background: var(--bg-light);
-      padding: 0.6rem 1.2rem;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.3s;
-      border: 1px solid transparent;
-    }
-
-    .skill-item:hover {
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(234, 88, 12, 0.1));
-      border-color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    /* CONTACT */
-    .contact-container {
-      background: var(--glass);
-      backdrop-filter: blur(20px);
-      padding: 3.5rem;
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-      max-width: 900px;
-      margin: 0 auto;
-      transition: all 0.3s;
-    }
-
-    .contact-container:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
-    }
-
-    .contact-info {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .contact-item {
-      text-align: center;
-      padding: 2rem;
-      background: var(--bg-white);
-      border-radius: 16px;
-      transition: all 0.3s;
-      border: 1px solid var(--border);
-    }
-
-    .contact-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .contact-item h4 {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .contact-item a {
-      color: var(--text-primary);
-      text-decoration: none;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-
-    .contact-item a:hover {
-      color: var(--primary);
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--text-primary);
-      color: white;
-      text-align: center;
-      padding: 2.5rem;
-      font-size: 0.95rem;
-      margin-top: 4rem;
-    }
-
-    body.dark-mode footer {
-      background: #111827;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-primary);
-      padding: 0.5rem;
-      border-radius: 12px;
-      transition: all 0.3s;
-    }
-
-    .menu-toggle:hover {
-      transform: scale(1.05);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--glass);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 1.5rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        gap: 1rem;
-        transform: translateY(-20px);
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.3s ease-in-out;
-      }
-
-      nav ul.active {
-        display: flex;
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .hero-content h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero-content p {
-        font-size: 1.2rem;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        padding: 4rem 1rem;
-      }
-
-      .section-title {
-        font-size: 2.5rem;
-      }
-    }
-
-    /* FALLBACKS */
-    @supports not (backdrop-filter: blur(20px)) {
-      nav, .about-grid, .contact-container {
-        background: var(--bg-white);
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Système d'Information</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav id="navbar" aria-label="Navigation principale">
-    <div class="container">
-      <div class="logo">TN</div>
-      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" onclick="toggleMenu()">☰</button>
-      <ul id="nav-menu" role="navigation">
-        <li><a href="#accueil" onclick="closeMenu()" class="nav-link">Accueil</a></li>
-        <li><a href="#apropos" onclick="closeMenu()" class="nav-link">À Propos</a></li>
-        <li><a href="#portfolio" onclick="closeMenu()" class="nav-link">Portfolio</a></li>
-        <li><a href="#projets" onclick="closeMenu()" class="nav-link">Projets</a></li>
-        <li><a href="#competences" onclick="closeMenu()" class="nav-link">Compétences</a></li>
-        <li><a href="#contact" onclick="closeMenu()" class="nav-link">Contact</a></li>
-        <li>
-          <button class="theme-toggle" aria-label="Changer de thème" onclick="toggleTheme()">
-            <span class="theme-icon">🌙</span>
-          </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <section id="accueil" class="hero" aria-labelledby="hero-title">
-    <div class="hero-content">
-      <h1 id="hero-title">Terrel Nuentsa</h1>
-      <p>Étudiant en L3 MIASHS - Parcours MIAGE</p>
-      <a href="#projets" class="btn" role="button">Découvrir mes projets</a>
-    </div>
-  </section>
-
-  <section id="apropos" class="section" aria-labelledby="about-title">
-    <h2 class="section-title" id="about-title">À Propos de Moi</h2>
-    <p class="section-subtitle">Découvrez mon parcours, mes passions et ce qui me motive dans le domaine du développement web.</p>
-    <div class="about-grid">
-      <div class="about-image">
-        <img src="https://via.placeholder.com/280/f97316/ffffff?text=Profile" alt="Photo de profil de Terrel Nuentsa" class="profile-img" loading="lazy">
-      </div>
-      <div class="about-content">
-        <h3>Terrel Nuentsa</h3>
-        <h4>Étudiant en L3 MIASHS - Parcours MIAGE</h4>
-        <p>Étudiant en troisième année de MIASHS, parcours MIAGE, je me forme à l'intersection de l'informatique, des mathématiques et de la gestion. Passionné de développement web, j'ai mené plusieurs projets concrets qui ont renforcé mes compétences en programmation, en conception d'interfaces et ma capacité à travailler en équipe.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="portfolio" class="section" aria-labelledby="portfolio-title">
-    <h2 class="section-title" id="portfolio-title">Portfolio Académique</h2>
-    <p class="section-subtitle">Module: Introduction aux systèmes d'information - Semestre 5 Parcours MIAGE</p>
-    
-    <div class="portfolio-rubrics">
-      <article class="rubric-card">
-        <div class="rubric-header">
-          <span class="rubric-number">01</span>
-          <h3>Travaux Demandés</h3>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#accueil" class="nav-logo">
+                <span class="logo-gradient">Portfolio</span> SI
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+                <li><a href="#tds" class="nav-link">TDs</a></li>
+                <li><a href="#cours" class="nav-link">Cours</a></li>
+                <li><a href="#projets" class="nav-link">Projets</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
         </div>
-        <div class="rubric-content">
-          <p class="competence">Gérer et organiser ses productions académiques</p>
-          <div class="criteria">
-            <strong>Critères:</strong> Tous les travaux demandés sont déposés, complets et correctement nommés
-          </div>
-        </div>
-      </article>
+    </nav>
 
-      <article class="rubric-card">
-        <div class="rubric-header">
-          <span class="rubric-number">02</span>
-          <h3>Notes de Cours</h3>
+    <section id="accueil" class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
         </div>
-        <div class="rubric-content">
-          <p class="competence">Développer une autonomie dans la prise de notes et la gestion des ressources personnelles</p>
-          <div class="criteria">
-            <strong>Critères:</strong> Les notes de cours sont claires, structurées et accessibles
-          </div>
+        <div class="hero-content">
+            <div class="hero-badge">Bienvenue sur mon portfolio</div>
+            <h1 class="hero-title">
+                Portfolio <span class="gradient-text">Système d'Information</span>
+            </h1>
+            <p class="hero-subtitle">Retrouvez tous mes TDs, cours et projets dans un espace moderne et interactif</p>
+            <div class="hero-buttons">
+                <a href="#projets" class="btn btn-primary">
+                    <span>Voir mes projets</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <span>Me contacter</span>
+                </a>
+            </div>
         </div>
-      </article>
-
-      <article class="rubric-card">
-        <div class="rubric-header">
-          <span class="rubric-number">03</span>
-          <h3>Documents Système</h3>
+        <div class="scroll-indicator">
+            <div class="mouse"></div>
         </div>
-        <div class="rubric-content">
-          <p class="competence">Identifier, rédiger et organiser des documents liés à un système d'information</p>
-          <div class="criteria">
-            <strong>Critères:</strong> Les documents sont rédigés, classés et bien présentés
-          </div>
+    </section>
+
+    <section id="tds" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Apprentissage</span>
+                <h2 class="section-title">Travaux Dirigés</h2>
+                <p class="section-description">Découvrez mes travaux dirigés et exercices pratiques</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="card-header">
+                        <h3>TD1: Introduction aux Systèmes d'Information</h3>
+                        <span class="date">15/09/2024</span>
+                    </div>
+                    <p class="card-description">Découverte des concepts fondamentaux des SI</p>
+                    <a href="#" class="btn btn-small">
+                        <span>Télécharger</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M3 9H21M9 21V9" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="card-header">
+                        <h3>TD2: SQL Avancé</h3>
+                        <span class="date">22/09/2024</span>
+                    </div>
+                    <p class="card-description">Requêtes complexes et optimisation</p>
+                    <a href="#" class="btn btn-small">
+                        <span>Télécharger</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 2V5M12 19V22M22 12H19M5 12H2M19.07 4.93L16.95 7.05M7.05 16.95L4.93 19.07M19.07 19.07L16.95 16.95M7.05 7.05L4.93 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="card-header">
+                        <h3>TD3: UML</h3>
+                        <span class="date">29/09/2024</span>
+                    </div>
+                    <p class="card-description">Modélisation avec diagrammes UML</p>
+                    <a href="#" class="btn btn-small">
+                        <span>Télécharger</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="info-note">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Pour ajouter tes propres TDs, modifie le HTML !</span>
+            </div>
         </div>
-      </article>
+    </section>
 
-      <article class="rubric-card">
-        <div class="rubric-header">
-          <span class="rubric-number">04</span>
-          <h3>Certifications</h3>
+    <section id="cours" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Connaissances</span>
+                <h2 class="section-title">Cours</h2>
+                <p class="section-description">Mes notes de cours et ressources pédagogiques</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Chapitre 1: Architecture des SI</h3>
+                    <p class="card-description">Composants et organisation des systèmes d'information</p>
+                    <a href="#" class="btn btn-small">
+                        <span>Accéder au cours</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                            <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                            <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                            <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Chapitre 2: Modélisation</h3>
+                    <p class="card-description">Méthodes et outils de modélisation</p>
+                    <a href="#" class="btn btn-small">
+                        <span>Accéder au cours</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                            <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 11V7M12 7C12 5.89543 11.1046 5 10 5H9C7.89543 5 7 5.89543 7 7V11M12 7C12 5.89543 12.8954 5 14 5H15C16.1046 5 17 5.89543 17 7V11" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Chapitre 3: Sécurité</h3>
+                    <p class="card-description">Principes de sécurité des SI</p>
+                    <a href="#" class="btn btn-small">
+                        <span>Accéder au cours</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="info-note">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M6.5 2H20V22H6.5A2.5 2.5 0 0 1 4 19.5V4.5A2.5 2.5 0 0 1 6.5 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span>Ajoute tes PDFs de cours en modifiant le HTML !</span>
+            </div>
         </div>
-        <div class="rubric-content">
-          <p class="competence">Valoriser quelques compétences par des attestations ou certifications obtenues</p>
-          <div class="criteria">
-            <strong>Critères:</strong> Les certificats sont déposés en format lisible (PDF ou image) et correctement identifiés
-          </div>
+    </section>
+
+    <section id="projets" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Réalisations</span>
+                <h2 class="section-title">Projets</h2>
+                <p class="section-description">Découvrez mes projets et réalisations techniques</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Bander-Sneakers</h3>
+                    <p class="project-description">Site e-commerce complet (produits neufs et d'occasion) avec gestion des commandes, paiements sécurisés et système de fidélisation clients.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                    <a href="#" class="btn btn-small">
+                        <span>Voir le projet</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <h3>QuizMaster</h3>
+                    <p class="project-description">Application web de quiz avec inscription, gestion de sessions, système de classement et différents modes de jeu.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">PHP</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <a href="#" class="btn btn-small">
+                        <span>Voir le projet</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Bandersnatch</h3>
+                    <p class="project-description">Jeu de rôle interactif assisté par IA locale (Llama 2), scénarios dynamiques et adaptatifs générés en temps réel.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Flask</span>
+                    </div>
+                    <a href="#" class="btn btn-small">
+                        <span>Voir le projet</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Analyse des Infractions à Paris</h3>
+                    <p class="project-description">Projet de Data Analyse sur la répartition des infractions dans les 20 arrondissements de Paris, avec visualisation des écarts.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Excel</span>
+                        <span class="tech-tag">Data Analyse</span>
+                    </div>
+                    <a href="#" class="btn btn-small">
+                        <span>Voir le projet</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Application de Chat Sécurisée</h3>
+                    <p class="project-description">Application de messagerie chiffrée de bout en bout avec gestion multi-utilisateurs, threads et authentification sécurisée.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Cryptography</span>
+                    </div>
+                    <a href="#" class="btn btn-small">
+                        <span>Voir le projet</span>
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
-      </article>
+    </section> 
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Restons en contact</span>
+                <h2 class="section-title">Contact</h2>
+                <p class="section-description">N'hésitez pas à me contacter pour toute question ou collaboration</p>
+            </div>
+            <div class="contact-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Envoyer le message</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </form>
 
-      <article class="rubric-card">
-        <div class="rubric-header">
-          <span class="rubric-number">05</span>
-          <h3>Projet Final</h3>
+                <div class="contact-info">
+                    <h3>Informations de contact</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 7L12 13L22 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:nuentsa.terrel@gmail.com">nuentsa.terrel@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 16.92V19.92C22 20.4728 21.5523 20.9203 21 20.9203H18C7.50659 20.9203 3 16.4137 3 5.92029V3.92029C3 3.36758 3.44772 2.92029 4 2.92029H7L8.5 8.42029L6.5 9.92029C7.5 12.4203 9.5 14.4203 12 15.4203L13.5 13.4203L19 14.9203L22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Téléphone</strong>
+                            <a href="tel:+33696612749">+33 6 69 61 27 49</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 19C9 19.5304 9.21071 20.0391 9.58579 20.4142C9.96086 20.7893 10.4696 21 11 21H13C13.5304 21 14.0391 20.7893 14.4142 20.4142C14.7893 20.0391 15 19.5304 15 19V13H9V19Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M9 7C9 5.93913 9.42143 4.92172 10.1716 4.17157C10.9217 3.42143 11.9391 3 13 3C14.0609 3 15.0783 3.42143 15.8284 4.17157C16.5786 4.92172 17 5.93913 17 7L15 13H9L9 7Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>GitHub</strong>
+                            <a href="https://github.com" target="_blank">github.com/votreprofil</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>LinkedIn</strong>
+                            <a href="https://www.linkedin.com/in/terrelnuentsa" target="_blank">linkedin.com/in/terrelnuentsa</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M2 12H22M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Portfolio</strong>
+                            <a href="https://portfolio-terrel.vercel.app" target="_blank">portfolio-terrel.vercel.app</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="rubric-content">
-          <p class="competence">Concevoir et réaliser un projet numérique intégrant les compétences acquises</p>
-          <div class="criteria">
-            <strong>Critères:</strong> Le projet est réalisé, documenté et présenté de manière professionnelle
-          </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-background">
+            <div class="footer-orb"></div>
         </div>
-      </article>
-
-      <article class="rubric-card">
-        <div class="rubric-header">
-          <span class="rubric-number">06</span>
-          <h3>Diaporama Soutenance</h3>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">
+                        <span class="logo-gradient">Portfolio</span> SI
+                    </h3>
+                    <p>Système d'Information - 2024</p>
+                </div>
+                <nav class="footer-nav">
+                    <div class="footer-nav-group">
+                        <h4>Navigation</h4>
+                        <a href="#accueil">Accueil</a>
+                        <a href="#tds">TDs</a>
+                        <a href="#cours">Cours</a>
+                    </div>
+                    <div class="footer-nav-group">
+                        <h4>Projets</h4>
+                        <a href="#projets">Tous les projets</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 Portfolio Système d'Information - Tous droits réservés</p>
+            </div>
         </div>
-        <div class="rubric-content">
-          <p class="competence">Synthétiser et présenter un projet de manière claire et professionnelle</p>
-          <div class="criteria">
-            <strong>Critères:</strong> Le diaporama est structuré, visuellement lisible et adapté à une présentation orale
-          </div>
-        </div>
-      </article>
+    </footer>
 
-      <article class="rubric-card">
-        <div class="rubric-header">
-          <span class="rubric-number">07</span>
-          <h3>Autres Ressources</h3>
-        </div>
-        <div class="rubric-content">
-          <p class="competence">Développer une capacité de veille et d'enrichissement personnel par des ressources complémentaires</p>
-          <div class="criteria">
-            <strong>Critères:</strong> Les ressources ajoutées sont pertinentes, variées et correctement référencées
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="projets" class="section" aria-labelledby="projects-title">
-    <h2 class="section-title" id="projects-title">Mes Créations</h2>
-    <p class="section-subtitle">Découvrez une sélection de mes projets de développement web, mettant en valeur mes compétences techniques et ma créativité.</p>
-    <div class="projects-grid">
-      <article class="project-card">
-        <img src="https://via.placeholder.com/400x220/f97316/ffffff?text=Bander-Sneakers" alt="Bander-Sneakers site e-commerce" class="project-image" loading="lazy">
-        <div class="project-content">
-          <h3>Bander-Sneakers : Site e-commerce</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">HTML</span>
-            <span class="tech-tag">CSS</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">PHP</span>
-          </div>
-          <div class="project-details">
-            <h4>Défis</h4>
-            <p>Développement d'un système de panier fonctionnel et intégration d'une passerelle de paiement sécurisée.</p>
-            <h4>Solutions</h4>
-            <p>Utilisation de sessions pour la gestion du panier et implémentation de mesures de sécurité pour les transactions.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <img src="https://via.placeholder.com/400x220/ea580c/ffffff?text=QuizMaster" alt="QuizMaster application de quiz" class="project-image" loading="lazy">
-        <div class="project-content">
-          <h3>QuizMaster - Application de quiz</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">MongoDB</span>
-            <span class="tech-tag">WebSocket</span>
-          </div>
-          <div class="project-details">
-            <h4>Défis</h4>
-            <p>Création d'un système de classement en temps réel et gestion des duels entre utilisateurs.</p>
-            <h4>Solutions</h4>
-            <p>Implémentation d'une base de données optimisée et utilisation de WebSockets pour les interactions en temps réel.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <img src="https://via.placeholder.com/400x220/fb923c/ffffff?text=Smart+Calendar" alt="Smart Calendar application de planification" class="project-image" loading="lazy">
-        <div class="project-content">
-          <h3>Smart Calendar - Application de planification</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">TypeScript</span>
-            <span class="tech-tag">API</span>
-            <span class="tech-tag">PDF Export</span>
-          </div>
-          <div class="project-details">
-            <h4>Défis</h4>
-            <p>Intégration sécurisée des API de calendrier externes, gestion des fuseaux horaires, création d'une interface responsive pour différentes vues de calendrier, et exportation d'emplois du temps personnalisés.</p>
-            <h4>Solutions</h4>
-            <p>Utilisation d'API routes sécurisées pour protéger les clés API, implémentation de composants React modulaires pour les différentes vues de calendrier, et création d'un système d'exportation PDF/PNG flexible.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <img src="https://via.placeholder.com/400x220/dc2626/ffffff?text=Chat+Crypté" alt="Application de chat crypté" class="project-image" loading="lazy">
-        <div class="project-content">
-          <h3>Application de chat crypté</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">Cryptographie</span>
-            <span class="tech-tag">WebSocket</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">Security</span>
-          </div>
-          <div class="project-details">
-            <h4>Défis</h4>
-            <p>Implémentation d'algorithmes de chiffrement sécurisés et création d'une interface utilisateur intuitive.</p>
-            <h4>Solutions</h4>
-            <p>Utilisation de bibliothèques de cryptographie modernes et conception d'une UI/UX centrée sur l'utilisateur.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <img src="https://via.placeholder.com/400x220/f59e0b/ffffff?text=Bandersnach" alt="Bandersnach jeu de rôle interactif" class="project-image" loading="lazy">
-        <div class="project-content">
-          <h3>Bandersnach - Jeu de rôle interactif assisté par IA</h3>
-          <div class="tech-tags">
-            <span class="tech-tag">IA</span>
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">NLP</span>
-            <span class="tech-tag">Gaming</span>
-          </div>
-          <div class="project-details">
-            <h4>Défis</h4>
-            <p>Intégration d'une IA capable de générer des histoires cohérentes et création d'une interface immersive.</p>
-            <h4>Solutions</h4>
-            <p>Utilisation d'algorithmes de traitement du langage naturel et conception d'une interface utilisateur engageante.</p>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="competences" class="section" aria-labelledby="skills-title">
-    <h2 class="section-title" id="skills-title">Mon Expertise</h2>
-    <p class="section-subtitle">Un aperçu des technologies et compétences que j'ai acquises au cours de ma formation et de mes projets.</p>
-    <div class="skills-grid">
-      <article class="skill-category">
-        <h3>Programmation</h3>
-        <div class="skill-list">
-          <span class="skill-item">Python</span>
-          <span class="skill-item">JavaScript</span>
-          <span class="skill-item">TypeScript</span>
-          <span class="skill-item">PHP</span>
-          <span class="skill-item">Java</span>
-          <span class="skill-item">C</span>
-        </div>
-      </article>
-
-      <article class="skill-category">
-        <h3>Développement Web</h3>
-        <div class="skill-list">
-          <span class="skill-item">HTML5</span>
-          <span class="skill-item">CSS3</span>
-          <span class="skill-item">React</span>
-          <span class="skill-item">Node.js</span>
-          <span class="skill-item">Next.js</span>
-          <span class="skill-item">Tailwind CSS</span>
-        </div>
-      </article>
-
-      <article class="skill-category">
-        <h3>Base de données</h3>
-        <div class="skill-list">
-          <span class="skill-item">MySQL</span>
-          <span class="skill-item">PostgreSQL</span>
-          <span class="skill-item">MongoDB</span>
-          <span class="skill-item">Supabase</span>
-        </div>
-      </article>
-
-      <article class="skill-category">
-        <h3>Outils de Productivité Technique</h3>
-        <div class="skill-list">
-          <span class="skill-item">Git</span>
-          <span class="skill-item">GitHub</span>
-          <span class="skill-item">VS Code</span>
-          <span class="skill-item">Docker</span>
-          <span class="skill-item">Postman</span>
-        </div>
-      </article>
-
-      <article class="skill-category">
-        <h3>Outils Bureautiques</h3>
-        <div class="skill-list">
-          <span class="skill-item">Microsoft Office</span>
-          <span class="skill-item">Google Workspace</span>
-          <span class="skill-item">Notion</span>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="contact" class="section" aria-labelledby="contact-title">
-    <h2 class="section-title" id="contact-title">Me Contacter</h2>
-    <p class="section-subtitle">Vous souhaitez discuter d'un projet ou en savoir plus ? N'hésitez pas à me contacter !</p>
-    <div class="contact-container">
-      <div class="contact-info">
-        <div class="contact-item">
-          <h4>Email</h4>
-          <a href="mailto:terrel.nuentsa@example.com" aria-label="Envoyer un email à Terrel Nuentsa">terrel.nuentsa@example.com</a>
-        </div>
-        <div class="contact-item">
-          <h4>LinkedIn</h4>
-          <a href="https://linkedin.com/in/terrelnuentsa" target="_blank" rel="noopener" aria-label="Visiter le profil LinkedIn de Terrel Nuentsa">linkedin.com/in/terrelnuentsa</a>
-        </div>
-        <div class="contact-item">
-          <h4>GitHub</h4>
-          <a href="https://github.com/terrelnuentsa" target="_blank" rel="noopener" aria-label="Visiter le profil GitHub de Terrel Nuentsa">github.com/terrelnuentsa</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer aria-label="Pied de page">
-    <p>&copy; 2025 Terrel Nuentsa. Tous droits réservés.</p>
-  </footer>
-
-  <script>
-    // Toggle mobile menu
-    function toggleMenu() {
-      const menu = document.getElementById('nav-menu');
-      const toggleButton = document.querySelector('.menu-toggle');
-      const isExpanded = menu.classList.toggle('active');
-      toggleButton.setAttribute('aria-expanded', isExpanded);
-      toggleButton.innerHTML = isExpanded ? '✕' : '☰';
-    }
-
-    // Close mobile menu
-    function closeMenu() {
-      const menu = document.getElementById('nav-menu');
-      const toggleButton = document.querySelector('.menu-toggle');
-      menu.classList.remove('active');
-      toggleButton.setAttribute('aria-expanded', 'false');
-      toggleButton.innerHTML = '☰';
-    }
-
-    // Toggle theme
-    function toggleTheme() {
-      document.body.classList.toggle('dark-mode');
-      const themeIcon = document.querySelector('.theme-icon');
-      themeIcon.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-    }
-
-    // Load saved theme
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-        document.querySelector('.theme-icon').textContent = '☀️';
-      }
-
-      // Add scroll effect to navbar
-      window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-      });
-
-      // Add active class to current section link
-      const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('.nav-link');
-
-      window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 100;
-          if (window.scrollY >= sectionTop) {
-            current = section.getAttribute('id');
-          }
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href').substring(1) === current) {
-            link.classList.add('active');
-          }
-        });
-      });
-    });
-  </script>
+    <script src="main.js"></script>
 </body>
 </html>
