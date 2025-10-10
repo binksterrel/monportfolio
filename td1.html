@@ -44,6 +44,9 @@
                         </div>
                         <h3>PGI Exercice</h3>
                         <p class="card-description">Fichier Excel pour l'exercice sur les Progiciels de Gestion Intégrée</p>
+                        <div class="preview-container">
+                            <img src="/image/excel-icon.png" alt="Excel Preview" class="preview-image">
+                        </div>
                         <a href="/image/PGI_exercice.xls" class="btn btn-small" download>
                             <span>Télécharger</span>
                             <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
@@ -60,6 +63,9 @@
                         </div>
                         <h3>Schéma Quilloo</h3>
                         <p class="card-description">Schéma illustrant les concepts des systèmes d'information</p>
+                        <div class="preview-container">
+                            <img src="/image/QuillooSchema.png" alt="Quilloo Schema Preview" class="preview-image" onclick="openModal('/image/QuillooSchema')">
+                        </div>
                         <a href="/image/QuillooSchema.png" class="btn btn-small" download>
                             <span>Télécharger</span>
                             <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
@@ -78,6 +84,12 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal for Image Preview -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
 
     <footer class="footer">
         <div class="footer-background">
