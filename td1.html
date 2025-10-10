@@ -47,7 +47,7 @@
                         <div class="preview-container">
                             <img src="/image/excel-icon.png" alt="Excel Preview" class="preview-image">
                         </div>
-                        <a href="/image/PGI_exercice.xls" class="btn btn-small" download>
+                        <a href="/image/PGI_exercice.xls" class="btn btn-small" download="PGI_exercice.xls">
                             <span>Télécharger</span>
                             <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
                                 <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -64,9 +64,9 @@
                         <h3>Schéma Quilloo</h3>
                         <p class="card-description">Schéma illustrant les concepts des systèmes d'information</p>
                         <div class="preview-container">
-                            <img src="/image/QuillooSchema.png" alt="Quilloo Schema Preview" class="preview-image" onclick="openModal('/image/QuillooSchema')">
+                            <img src="/image/QuillooSchema.png" alt="Quilloo Schema Preview" class="preview-image" onclick="openModal('/image/QuillooSchema.png')">
                         </div>
-                        <a href="/image/QuillooSchema.png" class="btn btn-small" download>
+                        <a href="/image/QuillooSchema.png" class="btn btn-small" download="QuillooSchema.png">
                             <span>Télécharger</span>
                             <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
                                 <path d="M10 3V13M10 13L6 9M10 13L14 9M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -123,6 +123,52 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script>
+        // Modal functionality
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImage.src = imageSrc;
+
+            // Gestion des erreurs de chargement d'image
+            modalImage.onerror = function() {
+                modalImage.style.display = 'none';
+                const errorMsg = document.createElement('p');
+                errorMsg.className = 'error-message';
+                errorMsg.textContent = 'Erreur : Impossible de charger l\'image';
+                modal.appendChild(errorMsg);
+            };
+            modalImage.onload = function() {
+                modalImage.style.display = 'block';
+                const existingError = modal.querySelector('.error-message');
+                if (existingError) existingError.remove();
+            };
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        // Fermer le modal en cliquant dehors
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+
+        // Gestion des erreurs pour les aperçus
+        document.querySelectorAll('.preview-image').forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                const errorMsg = document.createElement('p');
+                errorMsg.className = 'error-message';
+                errorMsg.textContent = 'Erreur : Impossible de charger l\'aperçu';
+                this.parentElement.appendChild(errorMsg);
+            };
+        });
+    </script>
 </body>
 </html>
